@@ -1,19 +1,21 @@
 import random
 
 def randomize_participants():
+
+    signups = ""
+
     # Get input from user for all rostered troopers and roster cap
     try:
         signups = input("Enter the names of all rostered members, separated by commas: ")
         roster_cap = int(input("Enter the roster cap: "))
     except ValueError as e:
-        print("Error with input: You didn't provide a valid roster cap number!\n"
-              "{e}".format(e=e))
-        raise e
-
-    # some quick input validation
-    if not signups:
-        print("Error: you didn't provide any names!")
+        print("Error with input: You didn't provide a valid roster cap number!")
         exit()
+    finally:
+        # some quick input validation
+        if not signups:
+            print("Error: you didn't provide any names!")
+            exit()
 
     # Convert that input into a list
     signup_list = [member for member in signups.split(",")]
