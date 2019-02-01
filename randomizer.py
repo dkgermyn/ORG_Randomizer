@@ -2,8 +2,18 @@ import random
 
 def randomize_participants():
     # Get input from user for all rostered troopers and roster cap
-    signups = input("Enter the names of all rostered members, separated by commas: ")
-    roster_cap = int(input("Enter the roster cap: "))
+    try:
+        signups = input("Enter the names of all rostered members, separated by commas: ")
+        roster_cap = int(input("Enter the roster cap: "))
+    except ValueError as e:
+        print("Error with input: You didn't provide a valid roster cap number!\n"
+              "{e}".format(e=e))
+        raise e
+
+    # some quick input validation
+    if not signups:
+        print("Error: you didn't provide any names!")
+        exit()
 
     # Convert that input into a list
     signup_list = [member for member in signups.split(",")]
@@ -15,11 +25,7 @@ def randomize_participants():
     # Randomize the order of all entries in the list
     random.shuffle(signup_list)
 
-    # Create a new empty "participants" list and a count of participating troopers, starting from zero
-    # number_of_participants = 0
-    # participant_list = []
-
-    print("There's {rostered} rostered member(s)".format(rostered=len(signup_list)))
+    print("There is {rostered} rostered member(s)".format(rostered=len(signup_list)))
     print("The roster cap is {cap} member(s)".format(cap=roster_cap))
 
     # return the randomized list, but split it up so we can see rostered / waitlisted
@@ -31,9 +37,13 @@ def randomize_participants():
     for member in roster:
         print(member)
 
-    print("WAITLISTED MEMBERS: ")
-    for member in waitlist:
-        print(member)
+    if not waitlist:
+        pass
+    else:
+        print("WAITLISTED MEMBERS: ")
+        for member in waitlist:
+            print(member)
+
 
 if __name__ == "__main__":
     randomize_participants()
