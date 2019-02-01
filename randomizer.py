@@ -16,24 +16,24 @@ def randomize_participants():
     random.shuffle(signup_list)
 
     # Create a new empty "participants" list and a count of participating troopers, starting from zero
-    number_of_participants = 0
-    participant_list = []
+    # number_of_participants = 0
+    # participant_list = []
 
     print("There's {rostered} rostered member(s)".format(rostered=len(signup_list)))
     print("The roster cap is {cap} member(s)".format(cap=roster_cap))
 
-    # Keep adding a random rostered trooper from the signup list to the new "participants" list
-    # until we hit the roster cap, or until the signup list is empty, whichever comes first
-    while (number_of_participants < roster_cap) and (len(signup_list) > 0):
-        # take a member from the signup list
-        participant = signup_list.pop()
-        # add them to the participant list
-        participant_list.append(participant)
-        # increment "number of participants"
-        number_of_participants += 1
+    # return the randomized list, but split it up so we can see rostered / waitlisted
+    roster = [member for member in signup_list[0:roster_cap]]
+    waitlist = [member for member in signup_list[roster_cap:]]
 
-    # finally, print our new list of randomized troopers
-    print("Your participants are {participants}".format(participants=participant_list))
+    print("Here is the roster for the event:\n"
+          "ROSTERED MEMBERS: ")
+    for member in roster:
+        print(member)
+
+    print("WAITLISTED MEMBERS: ")
+    for member in waitlist:
+        print(member)
 
 if __name__ == "__main__":
     randomize_participants()
