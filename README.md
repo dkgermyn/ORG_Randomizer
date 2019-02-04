@@ -19,6 +19,8 @@ Follow the on-screen instructions...
 
 `Enter the roster cap: `
 
+`How many slots are locked?  (Press 'Enter' for none)`
+
 ...and the script will randomize your signed-up members and generate a list of participants.
 
 ```
